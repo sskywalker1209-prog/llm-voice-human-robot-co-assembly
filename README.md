@@ -1,3 +1,12 @@
+> **이 저장소에 대해** — Doosan Robotics ROKEY BOOT CAMP 9기 팀 프로젝트 원본 [suuuhululu/co-human-robot-LEGO-assembly](https://github.com/suuuhululu/co-human-robot-LEGO-assembly)의 포크입니다. 아래 원본 README 는 팀 전체 프로젝트 설명이고, 이 안내 절만 이시율이 추가했습니다(저장소 안 링크는 이 포크 주소로 바꿈).
+>
+> - **프로젝트**: LLM · Voice 기반 Adaptive Human-Robot Co-Assembly (2026.10.01 ~ 10.16). 4인 팀, 파트 A~D 분담
+> - **시연 영상(별도 보존본)**: [Google Drive](https://drive.google.com/file/d/1acME1HBUyJQN26yQyRgmvBVRHVpVNs6a/view?usp=sharing)
+> - **이시율 담당**: 음성 · LLM 설계 파트 — STT/TTS 음성 입출력과 실음성 대화 시험, 의도 분석(Intent Parsing), LLM 설계 생성 · 구조 검증, KEEP · REVISE · UNCLEAR 판정과 설계 버전 관리, 발표
+> - **팀원 담당**: 조립 계획, 카메라 인지, 백엔드 · HMI · 로봇 제어 · 전체 통합(인터페이스 규격 결정은 팀장)
+> - **함께 해결**: 사람마다 말하는 방식이 다르고 LLM 의 자유 출력은 로봇 파이프라인에 그대로 쓸 수 없음 → 의도 유형화, 현재 · 후보 · 승인 설계 상태, 판정과 JSON Schema 검증 연결, 재질의 절차
+
+---
 
 # Adaptive Co-Assembly
 
@@ -186,7 +195,7 @@ A · B · C의 결과를 현재 작업과 대조한 뒤에만 다음 동작으�
 Ubuntu 24.04 / Python 3.12.3이 기준 환경입니다. GUI 실행에는 Qt 시스템 라이브러리와 화면 환경이 필요합니다.
 
 ```bash
-git clone --branch main --single-branch https://github.com/suuuhululu/co-human-robot-LEGO-assembly.git
+git clone --branch main --single-branch https://github.com/sskywalker1209-prog/llm-voice-human-robot-co-assembly.git
 cd co-human-robot-LEGO-assembly
 
 python3 -m venv .venv
@@ -209,7 +218,7 @@ C_DESIGN_USE_LLM=0 python3 -m app.mvp_integration \
 
 ## 코드 구조와 문서
 
-`main`은 실행에 필요한 부분만 정리한 묶음이고, 전체 개발 이력과 시험 기록은 최종 통합 브랜치 [`codex/integration-round4`](https://github.com/suuuhululu/co-human-robot-LEGO-assembly/tree/codex/integration-round4)에 있습니다.
+`main`은 실행에 필요한 부분만 정리한 묶음이고, 전체 개발 이력과 시험 기록은 최종 통합 브랜치 [`codex/integration-round4`](https://github.com/sskywalker1209-prog/llm-voice-human-robot-co-assembly/tree/codex/integration-round4)에 있습니다.
 
 ```text
 co-human-robot-LEGO-assembly/
@@ -227,7 +236,7 @@ co-human-robot-LEGO-assembly/
 
 | 자료 | 위치 |
 |---|---|
-| 진행 상황과 검증 기록 | [docs/STATUS.md](https://github.com/suuuhululu/co-human-robot-LEGO-assembly/blob/codex/integration-round4/docs/STATUS.md) (round4) |
-| 최종 실행 구성과 검증 | [Round3 게시 스냅샷](https://github.com/suuuhululu/co-human-robot-LEGO-assembly/blob/codex/integration-round4/docs/D_ROUND3_PUBLISHED_RUNTIME_20261015.md) (round4) |
-| 웹 아카이브 · DB 실행 안내 | [D_WEB_HISTORY_RUN.md](https://github.com/suuuhululu/co-human-robot-LEGO-assembly/blob/codex/integration-round4/docs/D_WEB_HISTORY_RUN.md) (round4) |
-| 보존 기준 | [통합 보존 기준](https://github.com/suuuhululu/co-human-robot-LEGO-assembly/tree/archive/integration-20261013-ebeeef2) · [이전 main](https://github.com/suuuhululu/co-human-robot-LEGO-assembly/tree/archive/main-20261013-afd75d0) · [파일 보존 명세](https://github.com/suuuhululu/co-human-robot-LEGO-assembly/blob/codex/archive-runtime-20261013/ARCHIVE_MANIFEST.json) |
+| 진행 상황과 검증 기록 | [docs/STATUS.md](https://github.com/sskywalker1209-prog/llm-voice-human-robot-co-assembly/blob/codex/integration-round4/docs/STATUS.md) (round4) |
+| 최종 실행 구성과 검증 | [Round3 게시 스냅샷](https://github.com/sskywalker1209-prog/llm-voice-human-robot-co-assembly/blob/codex/integration-round4/docs/D_ROUND3_PUBLISHED_RUNTIME_20261015.md) (round4) |
+| 웹 아카이브 · DB 실행 안내 | [D_WEB_HISTORY_RUN.md](https://github.com/sskywalker1209-prog/llm-voice-human-robot-co-assembly/blob/codex/integration-round4/docs/D_WEB_HISTORY_RUN.md) (round4) |
+| 보존 기준 | [통합 보존 기준](https://github.com/sskywalker1209-prog/llm-voice-human-robot-co-assembly/tree/archive/integration-20261013-ebeeef2) · [이전 main](https://github.com/sskywalker1209-prog/llm-voice-human-robot-co-assembly/tree/archive/main-20261013-afd75d0) · [파일 보존 명세](https://github.com/sskywalker1209-prog/llm-voice-human-robot-co-assembly/blob/codex/archive-runtime-20261013/ARCHIVE_MANIFEST.json) |
