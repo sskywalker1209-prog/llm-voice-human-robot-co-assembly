@@ -4,7 +4,21 @@
 > - **시연 영상(별도 보존본)**: [Google Drive](https://drive.google.com/file/d/1acME1HBUyJQN26yQyRgmvBVRHVpVNs6a/view?usp=sharing)
 > - **이시율 담당**: 음성 · LLM 설계 파트 — STT/TTS 음성 입출력과 실음성 대화 시험, 의도 분석(Intent Parsing), LLM 설계 생성 · 구조 검증, KEEP · REVISE · UNCLEAR 판정과 설계 버전 관리, 발표
 > - **팀원 담당**: 조립 계획, 카메라 인지, 백엔드 · HMI · 로봇 제어 · 전체 통합(인터페이스 규격 결정은 팀장)
-> - **함께 해결**: 사람마다 말하는 방식이 다르고 LLM 의 자유 출력은 로봇 파이프라인에 그대로 쓸 수 없음 → 의도 유형화, 현재 · 후보 · 승인 설계 상태, 판정과 JSON Schema 검증 연결, 재질의 절차
+> - **함께 해결**: 사람마다 말하는 방식이 다르고 LLM 의 자유 출력은 로봇 파이프라인에 그대로 쓸 수 없음 → 의도 유형화, 현재 · 후보 · 승인 설계 상태, 판정과 규칙 기반 설계 검증(JSON 출력) 연결, 재질의 절차
+>
+> **이 포크에서 내 담당 코드 보기** — 팀 프로젝트이며, C 파트(음성 · 설계) 밖의 조립 계획(A), 상태 검사 · 비전(B), 로봇 제어 · 실행 조정 · HMI · 웹 아카이브(D)는 팀원 작업입니다. 아래 파일도 10월 중순 팀원의 통합 커밋으로 일부가 다시 쓰였습니다. 커밋 이력은 원본 그대로입니다.
+>
+> | 파일 (`app/c_design/`) | 역할 | 대표 커밋 |
+> |---|---|---|
+> | [`voice.py`](app/c_design/voice.py) | 마이크 녹음 · 무음 제거, OpenAI Whisper STT, TTS 음성 응답 | [`056be77`](https://github.com/sskywalker1209-prog/llm-voice-human-robot-co-assembly/commit/056be77) [`9b877c6`](https://github.com/sskywalker1209-prog/llm-voice-human-robot-co-assembly/commit/9b877c6) |
+> | [`llm.py`](app/c_design/llm.py) | OpenAI 호출 — 설계 생성 프롬프트와 JSON 출력(JSON 모드), 개입 답변 해석(`interpret_intervention_answer`) | [`9de685b`](https://github.com/sskywalker1209-prog/llm-voice-human-robot-co-assembly/commit/9de685b) [`aa6c72e`](https://github.com/sskywalker1209-prog/llm-voice-human-robot-co-assembly/commit/aa6c72e) |
+> | [`designer.py`](app/c_design/designer.py) | 초기 · 수정 설계 생성, 검증 탈락 사유를 넣어 재생성, 설계 버전 관리 | [`dd45774`](https://github.com/sskywalker1209-prog/llm-voice-human-robot-co-assembly/commit/dd45774) [`9de685b`](https://github.com/sskywalker1209-prog/llm-voice-human-robot-co-assembly/commit/9de685b) |
+> | [`validator.py`](app/c_design/validator.py) | 규칙 기반 설계 검증기(`validate_design`) — 키 · 범위 · 색/블록 조합 · 겹침 · 지지 · 연결 · 기존 블록 보존 | [`e7db143`](https://github.com/sskywalker1209-prog/llm-voice-human-robot-co-assembly/commit/e7db143) [`2fa0e37`](https://github.com/sskywalker1209-prog/llm-voice-human-robot-co-assembly/commit/2fa0e37) |
+> | [`main.py`](app/c_design/main.py) | C 파트 실행 흐름 — 음성 요청 → 설계 생성 · 검증 → 승인, 조립 중 차이에 대한 KEEP · REVISE · UNCLEAR 대화 판정 | [`056be77`](https://github.com/sskywalker1209-prog/llm-voice-human-robot-co-assembly/commit/056be77) [`9b877c6`](https://github.com/sskywalker1209-prog/llm-voice-human-robot-co-assembly/commit/9b877c6) |
+> | [`dialogue.py`](app/c_design/dialogue.py) | 텍스트 대화 · 확인 문장 (일부) | [`e7db143`](https://github.com/sskywalker1209-prog/llm-voice-human-robot-co-assembly/commit/e7db143) |
+>
+> - **검증 방식**: LLM 출력은 JSON 모드로 받고, 표준 JSON Schema 라이브러리가 아니라 직접 짠 규칙 검증기로 검사합니다. 저장소의 `jsonschema` 사용처(`planning_trial/`)는 조립 계획 파트입니다.
+> - **시험 기록**: C 파트 단위 · 계약 시험(16개 파일)과 설계 계약 문서는 팀 통합 정리 때 main 에서 빠졌고, 이력에 남아 있습니다 — [시험 (2fa0e37 시점)](https://github.com/sskywalker1209-prog/llm-voice-human-robot-co-assembly/tree/2fa0e37/tests/unit/c_design), [C 설계 계약 문서](https://github.com/sskywalker1209-prog/llm-voice-human-robot-co-assembly/blob/2fa0e37/docs/C_DESIGN_CONTRACT.md).
 
 ---
 
